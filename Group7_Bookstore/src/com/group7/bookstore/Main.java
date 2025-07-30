@@ -25,7 +25,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    handleReadBooksMenu(); // <-- UPDATED
+                    handleReadBooksMenu();
                     break;
                 case 2:
                     handleAddNewBook();
