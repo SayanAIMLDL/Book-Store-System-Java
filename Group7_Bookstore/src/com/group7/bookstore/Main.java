@@ -1,8 +1,7 @@
-// File: src/com/group7/bookstore/Main.java
-package com.group7.bookstore; // <-- Correct package for Main.java
+package com.group7.bookstore;
 
 import com.group7.bookstore.model.Book;
-import com.group7.bookstore.service.BookstoreService; // <-- This import will now work
+import com.group7.bookstore.service.BookstoreService;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,50 +25,80 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    handleListAllBooks(); // This method is now included
+                    handleReadBooksMenu(); // <-- UPDATED
                     break;
                 case 2:
                     handleAddNewBook();
                     break;
                 case 3:
-                    handleUpdateBookPrice(); // This method is now included
+                    handleUpdateBookPrice();
                     break;
                 case 4:
-                    handleDeleteBook(); // This method is now included
+                    handleDeleteBook();
                     break;
                 case 5:
-                    return;
+                    return; // Exit the loop and the application
                 default:
                     System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                    System.out.println("----------------------------------------");
             }
-            System.out.println("------------------------------------");
         }
     }
 
-    // ... ALL HANDLER METHODS ARE NOW INCLUDED ...
-
     private static void printMenu() {
         System.out.println("\nChoose an operation:");
-        System.out.println("1. READ:   List all books");
+        System.out.println("1. READ: List all books or search for a book"); // <-- UPDATED
         System.out.println("2. CREATE: Add a new book");
         System.out.println("3. UPDATE: Update a book's price");
         System.out.println("4. DELETE: Delete a book");
         System.out.println("5. Exit");
+        System.out.println("----------------------------------------");
     }
 
-    private static void handleListAllBooks() {
-        System.out.println("\n[R]EAD: Listing all books from the database...");
-        List<Book> books = service.listAllBooks();
-        if (books.isEmpty()) {
-            System.out.println("No books found in the database.");
+    private static void handleReadBooksMenu() {
+        System.out.println("\n--- Read Options ---");
+        System.out.println("1. List all books");
+        System.out.println("2. Search for a book by title");
+        System.out.println("3. Back to main menu");
+        System.out.println("--------------------");
+        int choice = getIntegerInput("Enter your choice: ");
+
+        switch (choice) {
+            case 1:
+                System.out.println("\n[READ]: Listing all books from the database...");
+                List<Book> books = service.listAllBooks();
+                if (books.isEmpty()) {
+                    System.out.println("No books found in the database.");
+                } else {
+                    books.forEach(System.out::println);
+                }
+                break;
+            case 2:
+                handleSearchBookByTitle();
+                break;
+            case 3:
+                return; // Go back to the main menu
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    private static void handleSearchBookByTitle() {
+        System.out.println("\n[SEARCH]: Search for a book");
+        String title = getStringInput("Enter the book title to search for: ");
+        List<Book> foundBooks = service.searchBooksByTitle(title);
+
+        if (foundBooks.isEmpty()) {
+            System.out.println("No books found with a title containing '" + title + "'.");
         } else {
-            books.forEach(System.out::println);
+            System.out.println("\nFound " + foundBooks.size() + " book(s):");
+            foundBooks.forEach(System.out::println);
         }
     }
 
     private static void handleAddNewBook() {
-        System.out.println("\n[C]REATE: Add a new book");
         try {
+            System.out.println("\n[CREATE]: Add a new book");
             String title = getStringInput("Enter book title: ");
             String authorName = getStringInput("Enter author's name: ");
             String authorCountry = getStringInput("Enter author's country: ");
@@ -87,23 +116,25 @@ public class Main {
     }
 
     private static void handleUpdateBookPrice() {
-        System.out.println("\n[U]PDATE: Change a book's price");
+        System.out.println("\n[UPDATE]: Change a book's price");
         int bookIdToUpdate = getIntegerInput("Enter book ID to update: ");
         BigDecimal newPrice = getBigDecimalInput("Enter the new price: ");
+
         if (service.updateBookPrice(bookIdToUpdate, newPrice)) {
             System.out.println("Price updated successfully!");
         } else {
-            System.out.printf("Could not update price for book ID %d. It may not exist.\n", bookIdToUpdate);
+            System.out.println("Could not update price for book ID " + bookIdToUpdate + ". It may not exist.");
         }
     }
 
     private static void handleDeleteBook() {
-        System.out.println("\n[D]ELETE: Delete a book");
+        System.out.println("\n[DELETE]: Delete a book");
         int bookIdToDelete = getIntegerInput("Enter book ID to delete: ");
+
         if (service.removeBook(bookIdToDelete)) {
             System.out.println("Book deleted successfully!");
         } else {
-            System.out.printf("Could not delete book with ID %d. It may not exist.\n", bookIdToDelete);
+            System.out.println("Could not delete book with ID " + bookIdToDelete + ". It may not exist.");
         }
     }
 
@@ -113,8 +144,8 @@ public class Main {
         String input;
         while (true) {
             System.out.print(prompt);
-            input = scanner.nextLine();
-            if (input != null && !input.trim().isEmpty()) {
+            input = scanner.nextLine().trim();
+            if (input != null && !input.isEmpty()) {
                 return input;
             }
             System.out.println("Input cannot be empty. Please try again.");
@@ -138,7 +169,7 @@ public class Main {
                 System.out.print(prompt);
                 return new BigDecimal(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number (e.g., 299.99).");
+                System.out.println("Invalid input. Please enter a valid number (e.g., 29.99).");
             }
         }
     }
