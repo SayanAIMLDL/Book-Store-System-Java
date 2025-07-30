@@ -56,22 +56,3 @@ A list of all books currently available in the bookstore.
 The output when searching for a specific book by its  title.
 
 ![Search Book Screenshot](https://github.com/user-attachments/assets/544f0329-e5e1-4e06-b1da-a60beccc1385)
-
-
-## 🚀 How to Get Started
-
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/SayanAIMLDL/Book-Store-System-Java.git
-    ```
-2.  **Configure the Database**:
-    *   Create a MySQL database.
-    *   Update the database connection details (URL, username, password) in `src/com/group7/bookstore/util/DatabaseUtil.java`.
-    *   Execute the SQL script to create the `authors` and `books` tables.![initial](https://github.com/user-attachments/assets/f365d475-d012-4c52-88a2-f84d4c2e58e9)
-
-
-3.  **Add the MySQL JDBC Driver**:
-    *   Ensure the `mysql-connector-j` library is included in your project's build path.
-
-4.  **Run the Application**:
-    *   Compile and run the `Main.java` file to start the application.
