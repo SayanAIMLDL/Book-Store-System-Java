@@ -14,6 +14,8 @@ public class BookstoreService {
     private final BookDao bookDao = new BookDao();
     private final AuthorDao authorDao = new AuthorDao();
 
+    // --- Book Service Methods ---
+
     public List<Book> listAllBooks() {
         try {
             return bookDao.getAllBooks();
@@ -25,7 +27,6 @@ public class BookstoreService {
 
     public boolean addNewBook(String title, BigDecimal price, int quantity, String authorName, String authorCountry) {
         try {
-            // Input validation
             if (price.compareTo(BigDecimal.ZERO) < 0) {
                 System.err.println("SERVICE VALIDATION: Price cannot be negative.");
                 return false;
@@ -34,8 +35,6 @@ public class BookstoreService {
                 System.err.println("SERVICE VALIDATION: Quantity cannot be negative.");
                 return false;
             }
-
-            // Find or create the author
             Author author = authorDao.findAuthorByName(authorName);
             if (author == null) {
                 System.out.println("SERVICE INFO: Author '" + authorName + "' not found. Creating new author.");
@@ -44,7 +43,6 @@ public class BookstoreService {
                 newAuthor.setCountry(authorCountry);
                 author = authorDao.createAuthor(newAuthor);
             }
-
             bookDao.createBook(title, price, quantity, author.getId());
             return true;
         } catch (SQLException e) {
@@ -71,17 +69,68 @@ public class BookstoreService {
         }
     }
 
-    /**
-     * Searches for books by title.
-     * @param title The book title to search for.
-     * @return A list of matching books.
-     */
     public List<Book> searchBooksByTitle(String title) {
         try {
             return bookDao.findBooksByTitle(title);
         } catch (SQLException e) {
             System.err.println("SERVICE ERROR: Could not search for books. " + e.getMessage());
-            return Collections.emptyList(); // Return an empty list on error
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Book> findBooksByAuthor(int authorId) {
+        try {
+            return bookDao.findBooksByAuthorId(authorId);
+        } catch (SQLException e) {
+            System.err.println("SERVICE ERROR: Could not find books by author. " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    // --- Author Service Methods ---
+
+    public List<Author> listAllAuthors() {
+        try {
+            return authorDao.getAllAuthors();
+        } catch (SQLException e) {
+            System.err.println("SERVICE ERROR: Could not retrieve author list. " + e.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    public boolean addNewAuthor(String name, String country) {
+        try {
+            Author author = new Author();
+            author.setName(name);
+            author.setCountry(country);
+            authorDao.createAuthor(author);
+            return true;
+        } catch (SQLException e) {
+            System.err.println("SERVICE ERROR: Could not add new author. " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateAuthor(int authorId, String newName, String newCountry) {
+        try {
+            Author author = new Author();
+            author.setId(authorId);
+            author.setName(newName);
+            author.setCountry(newCountry);
+            return authorDao.updateAuthor(author);
+        } catch (SQLException e) {
+            System.err.println("SERVICE ERROR: Could not update author. " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean deleteAuthor(int authorId) {
+        try {
+            bookDao.disassociateBooksFromAuthor(authorId);
+            return authorDao.deleteAuthor(authorId);
+        } catch (SQLException e) {
+            System.err.println("SERVICE ERROR: Could not delete author. " + e.getMessage());
+            return false;
         }
     }
 }

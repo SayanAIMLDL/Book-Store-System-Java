@@ -21,7 +21,6 @@ public class BookDao {
 
     public List<Book> getAllBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
-        // LEFT JOIN ensures that books without an author are still listed
         String sql = "SELECT b.book_id, b.title, b.price, b.quantity, " +
                 "a.author_id, a.name AS author_name, a.country " +
                 "FROM books b LEFT JOIN authors a ON b.author_id = a.author_id ORDER BY b.book_id";
@@ -76,16 +75,8 @@ public class BookDao {
         }
     }
 
-    /**
-     * Finds books by their title using a case-insensitive search.
-     * @param title The title to search for.
-     * @return A list of books that match the title.
-     * @throws SQLException if a database access error occurs.
-     */
     public List<Book> findBooksByTitle(String title) throws SQLException {
         List<Book> books = new ArrayList<>();
-        // The SQL query uses LIKE and '%' wildcards to find partial matches
-        // The LOWER() function makes the search case-insensitive
         String sql = "SELECT b.book_id, b.title, b.price, b.quantity, " +
                 "a.author_id, a.name AS author_name, a.country " +
                 "FROM books b LEFT JOIN authors a ON b.author_id = a.author_id " +
@@ -104,6 +95,36 @@ public class BookDao {
         return books;
     }
 
+    public List<Book> findBooksByAuthorId(int authorId) throws SQLException {
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT b.book_id, b.title, b.price, b.quantity, " +
+                "a.author_id, a.name AS author_name, a.country " +
+                "FROM books b INNER JOIN authors a ON b.author_id = a.author_id " +
+                "WHERE b.author_id = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, authorId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                books.add(mapResultSetToBook(rs));
+            }
+        }
+        return books;
+    }
+
+    public void disassociateBooksFromAuthor(int authorId) throws SQLException {
+        String sql = "UPDATE books SET author_id = NULL WHERE author_id = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, authorId);
+            pstmt.executeUpdate();
+        }
+    }
+
+    // --- THIS IS THE MISSING METHOD ---
     private Book mapResultSetToBook(ResultSet rs) throws SQLException {
         Book book = new Book();
         book.setId(rs.getInt(COL_BOOK_ID));
