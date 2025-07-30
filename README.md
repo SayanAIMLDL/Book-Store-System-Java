@@ -29,7 +29,7 @@ This table stores information about the authors.
 ### Books Table
 This table stores details about the books, including a foreign key `author_id` that links to the `authors` table.
 
-![Book Table Schema](<img width="627" height="342" alt="image" src="https://github.com/user-attachments/assets/155ef79b-bdb2-49c2-8b4c-c49088ff4d9e" />
+![Book Table Schema](<img width="627" height="342" alt="image" src="https://github.com/user-attachments/assets/155ef79b-bdb2-49c2-8b4c-c49088ff4d9e" />)
 
 
 ## 📸 Application Output Screenshots
