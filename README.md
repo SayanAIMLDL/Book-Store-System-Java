@@ -23,8 +23,7 @@ The database consists of two primary tables: `authors` and `books`. A one-to-man
 ### Authors Table
 This table stores information about the authors.
 
-![Author Table Schema](<img width="392" height="280" alt="image" src="https://github.com/user-attachments/assets/fda931aa-3048-456f-b5cb-d45a40f6aadf" />
-)
+![Author Table Schema](https://github.com/user-attachments/assets/fda931aa-3048-456f-b5cb-d45a40f6aadf)
 
 ### Books Table
 This table stores details about the books, including a foreign key `author_id` that links to the `authors` table.
@@ -40,25 +39,23 @@ This table stores details about the books, including a foreign key `author_id` t
 ### 1. Main Menu
 The main entry point of the application, showing all available options.
 
-![Main Menu Screenshot](![initial](https://github.com/user-attachments/assets/b6ecb947-df29-4f74-bd1a-8398b99185d5)
-)
+![Main Menu Screenshot](https://github.com/user-attachments/assets/b6ecb947-df29-4f74-bd1a-8398b99185d5)
+
 
 ### 2. Adding a New Book
 The process of adding a new book to the database.
 
 ![Adding Book Screenshot](![Create](https://github.com/user-attachments/assets/ff923c86-8b69-4fc1-9a8d-a2670772f55c)
-)
 
 ### 3. Viewing All Books
 A list of all books currently available in the bookstore.
 
-![View All Books Screenshot](![ReadAsList](<img width="1433" height="681" alt="image" src="https://github.com/user-attachments/assets/b84698a5-bd96-4613-b1ce-837412729404" />))
+![View All Books Screenshot](![ReadAsList](https://github.com/user-attachments/assets/b84698a5-bd96-4613-b1ce-837412729404)
 
 ### 4. Searching for a Book
 The output when searching for a specific book by its  title.
 
-![Search Book Screenshot](![ReadByTitle]<img width="1346" height="426" alt="image" src="https://github.com/user-attachments/assets/544f0329-e5e1-4e06-b1da-a60beccc1385" />
-)
+![Search Book Screenshot](https://github.com/user-attachments/assets/544f0329-e5e1-4e06-b1da-a60beccc1385)
 
 
 ## 🚀 How to Get Started
