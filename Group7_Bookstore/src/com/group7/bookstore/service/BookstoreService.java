@@ -1,5 +1,4 @@
-// File: src/com/group7/bookstore/service/BookstoreService.java
-package com.group7.bookstore.service; // <-- VERY IMPORTANT
+package com.group7.bookstore.service;
 
 import com.group7.bookstore.dao.AuthorDao;
 import com.group7.bookstore.dao.BookDao;

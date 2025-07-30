@@ -124,7 +124,7 @@ public class BookDao {
         }
     }
 
-    // --- THIS IS THE MISSING METHOD ---
+
     private Book mapResultSetToBook(ResultSet rs) throws SQLException {
         Book book = new Book();
         book.setId(rs.getInt(COL_BOOK_ID));

@@ -53,7 +53,9 @@ public class Book {
 
     @Override
     public String toString() {
+        // Handle cases where author might not be set
         String authorName = (author != null) ? author.getName() : "No Author";
+        // Create a nicely formatted string representation
         return String.format("Book[ID=%-3d | Title=%-55s | Price=₹%-8.2f | Qty=%-3d | Author=%s]",
                 id, title, price, quantity, authorName);
     }

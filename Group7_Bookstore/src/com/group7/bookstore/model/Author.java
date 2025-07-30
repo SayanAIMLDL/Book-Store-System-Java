@@ -1,4 +1,3 @@
-
 package com.group7.bookstore.model;
 
 public class Author {
@@ -6,6 +5,7 @@ public class Author {
     private String name;
     private String country;
 
+    // Getters and Setters for id, name, and country
     public int getId() {
         return id;
     }
@@ -18,7 +18,6 @@ public class Author {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -29,5 +28,12 @@ public class Author {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("Author[ID=%-3d | Name=%-25s | Country=%s]",
+                id, name, country);
     }
 }

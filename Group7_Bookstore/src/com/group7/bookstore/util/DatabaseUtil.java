@@ -5,17 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseUtil {
+    // 1. The connection URL now uses 'db' as the hostname.
     private static final String URL = "jdbc:mysql://localhost:3306/bookstore_db";
     private static final String USER = "root";
     private static final String PASSWORD = "mca@9749";
 
     private static Connection connection = null;
 
+    // 2. This method establishes a connection to the database.
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // Optional: Explicitly register the driver
+                // 3. This line loads the MySQL driver.
                 Class.forName("com.mysql.cj.jdbc.Driver");
+                // 4. This line actually connects to the database.
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("INFO: New database connection established.");
             } catch (ClassNotFoundException e) {
