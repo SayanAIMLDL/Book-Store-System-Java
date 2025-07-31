@@ -33,7 +33,10 @@ This table stores details about the books, including a foreign key `author_id` t
 
 ## 📸 Application Output Screenshots
 
-![initial](https://github.com/user-attachments/assets/e910065b-af83-4ab7-8a32-c9d5cbedf865)
+![initial](https://github.com/user-attachments/assets/90e749f1-4538-4578-a51d-4500de27899d)
+![initial](https://github.com/user-attachments/assets/bcfd29e1-8676-4241-90dd-eea0cbcac241)
+![initial](https://github.com/user-attachments/assets/ad86220b-6571-4cb7-b321-1dbf9201c969)
+  
 
 
 ### 1. Main Menu
