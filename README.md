@@ -34,15 +34,16 @@ This table stores details about the books, including a foreign key `author_id` t
 ## 📸 Application Output Screenshots
 
 ![initial](https://github.com/user-attachments/assets/90e749f1-4538-4578-a51d-4500de27899d)
-![initial](https://github.com/user-attachments/assets/bcfd29e1-8676-4241-90dd-eea0cbcac241)
-![initial](https://github.com/user-attachments/assets/ad86220b-6571-4cb7-b321-1dbf9201c969)
+![initial]()
+![initial]()
   
 
 
 ### 1. Main Menu
 The main entry point of the application, showing all available options.
 
-![Main Menu Screenshot](https://github.com/user-attachments/assets/b6ecb947-df29-4f74-bd1a-8398b99185d5)
+![Main Menu Screenshot](https://github.com/user-attachments/assets/bcfd29e1-8676-4241-90dd-eea0cbcac241)
+![Main Menu Screenshot](https://github.com/user-attachments/assets/ad86220b-6571-4cb7-b321-1dbf9201c969)
 
 
 ### 2. Adding a New Book
