@@ -34,10 +34,6 @@ This table stores details about the books, including a foreign key `author_id` t
 ## 📸 Application Output Screenshots
 
 ![initial](https://github.com/user-attachments/assets/90e749f1-4538-4578-a51d-4500de27899d)
-![initial]()
-![initial]()
-  
-
 
 ### 1. Main Menu
 The main entry point of the application, showing all available options.
@@ -49,14 +45,23 @@ The main entry point of the application, showing all available options.
 ### 2. Adding a New Book
 The process of adding a new book to the database.
 
-![Adding Book Screenshot](![Create](https://github.com/user-attachments/assets/ff923c86-8b69-4fc1-9a8d-a2670772f55c)
+![Adding Book Screenshot](![Create](https://github.com/user-attachments/assets/25266f7b-61f7-4165-8c2a-b43f4af074d3)
 
 ### 3. Viewing All Books
 A list of all books currently available in the bookstore.
 
-![View All Books Screenshot](![ReadAsList](https://github.com/user-attachments/assets/b84698a5-bd96-4613-b1ce-837412729404)
+![View All Books Screenshot](![ReadAsList](https://github.com/user-attachments/assets/fe0a03f3-8caf-4931-9706-d3168e9e3556)
 
 ### 4. Searching for a Book
-The output when searching for a specific book by its  title.
+The output when searching for a specific book by its title.
 
-![Search Book Screenshot](https://github.com/user-attachments/assets/544f0329-e5e1-4e06-b1da-a60beccc1385)
+![Search Book Screenshot](![SearchByTitle](https://github.com/user-attachments/assets/dddb63c8-6556-443f-946e-b0820c8ed05b)
+
+The output when searching for a specific book by its author.
+
+![Search Book Screenshot](![SearchByTitle](https://github.com/user-attachments/assets/aeecb378-ccf3-4e84-abb0-f48d87ce771b)
+
+### Delete a Book
+The output when delete for a specific book by book id.
+
+![Delete Books Screenshot](https://github.com/user-attachments/assets/97e8961e-830d-498e-a9b2-2dd833653195)
